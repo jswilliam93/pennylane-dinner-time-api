@@ -2,9 +2,13 @@ class RecipesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
 
-  def index
+  def search
     query = recipe_params[:ingredients].join(',')
     render json: Recipe.where('ingredients <@ ?', "{#{query}}")
+  end
+
+  def ingredients
+    render json: Recipe.all_ingredients
   end
 
   private
