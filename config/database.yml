@@ -1,0 +1,17 @@
+psq defaults: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: app
+  password: test-password
+
+development:
+  <<: *default
+  database: pennylane_dinner_time
+  host: <%= ENV["DATABASE_HOST"] || "localhost" %>
+
+test:
+  <<: *default
+  database: pennylane_dinner_time_test<%= ENV['TEST_ENV_NUMBER'] %>
+  host: <%= ENV["DATABASE_HOST"] || "localhost" %>
+
