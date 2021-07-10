@@ -3,8 +3,7 @@ class RecipesController < ApplicationController
 
 
   def search
-    query = recipe_params[:ingredients].join(',')
-    render json: Recipe.where('ingredients <@ ?', "{#{query}}")
+    render json: Recipe.by_ingredients(recipe_params[:ingredients].join(','))
   end
 
   def ingredients
