@@ -1,7 +1,7 @@
 class Recipe < ApplicationRecord
 
   scope :by_ingredients, lambda { |ingredients|
-                           where('ingredients @> ?', "{#{ingredients}}")
+                           where('ingredients && ?', "{#{ingredients}}")
                          }
 
 
